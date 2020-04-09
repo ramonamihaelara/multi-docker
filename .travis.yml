@@ -3,20 +3,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t ramona/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t ramonamihaelara/react-test -f ./client/Dockerfile.dev ./client
 
 scripts:
-  - docker run -e CI=true ramona/react-test npm test -- --coverage
+  - docker run -e CI=true ramonamihaelara/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t ramona/multi-client ./client
-  - docker build -t ramona/multi-nginx ./nginx
-  - docker build -t ramona/multi-server ./server
-  - docker build -t ramona/multi-worker ./worker
+  - docker build -t ramonamihaelara/multi-client ./client
+  - docker build -t ramonamihaelara/multi-nginx ./nginx
+  - docker build -t ramonamihaelara/multi-server ./server
+  - docker build -t ramonamihaelara/multi-worker ./worker
   # Log in to docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push ramona/multi-client
-  - docker push ramona/multi-nginx
-  - docker push ramona/multi-server
-  - docker push ramona/multi-worker
+  - docker push ramonamihaelara/multi-client
+  - docker push ramonamihaelara/multi-nginx
+  - docker push ramonamihaelara/multi-server
+  - docker push ramonamihaelara/multi-worker
